@@ -283,7 +283,7 @@
 </head>
 <body>
     <div class="header">
-        <h1>From Idea to App Store in 5 Days</h1>
+        <h1>From Idea to App Store in a Week</h1>
         <p class="subtitle">How a non-developer built FastCast using Claude Code</p>
         <p class="meta">The honest story of false starts, pivots, and lessons learned</p>
     </div>
@@ -292,14 +292,14 @@
         <a href="index.html" class="back-link">← Back to FastCast</a>
 
         <p class="intro">
-            I'm not a software developer. I've never written serious code. But in 5 days, I went from a
+            I'm not a software developer. I've never written serious code. But in a week, I went from a
             frustrated podcast listener to having a fully functional iOS app ready for TestFlight beta.
-            This is the story of how I did it—and how you can too.
+            This is the story of how I did it, what I learned —and how you can too.
         </p>
 
         <div class="stats-grid">
             <div class="stat-card">
-                <div class="stat-number">5</div>
+                <div class="stat-number">7</div>
                 <div class="stat-label">Days to Beta</div>
             </div>
             <div class="stat-card">
@@ -319,17 +319,19 @@
         <h2>Chapter 1: The Spark</h2>
 
         <p>
-            I love podcasts. My queue was always growing faster than I could listen. I tried Snipd—a fantastic
-            app that lets you adjust speed, create clips, and even chat with episodes. But even at faster speeds,
-            I was falling behind.
-        </p>
+I love podcasts. My queue was always growing faster than I could listen. I tried
+<a href="https://snipd.com" target="_blank" style="color: #3b82f6;">Snipd</a>—a fantastic
+app that lets you adjust speed, create clips, and even chat with episodes. But even at faster
+speeds, I was falling behind.
+</p>
+
 
         <p>
             Then I remembered an article I'd read years ago about blind individuals who had trained themselves to
             comprehend audio at 5x speed. Not because of superhuman hearing, but through neuroplasticity and
             gradual training. <a href="https://www.scientificamerican.com/article/why-can-some-blind-people-process/"
-            target="_blank" style="color: #3b82f6;">Scientific American covered this research</a>, and you can even
-            <a href="https://www.youtube.com/watch?v=kJ4SSvVbhLw" target="_blank" style="color: #3b82f6;">hear
+            target="_blank" style="color: #3b82f6;">Scientific American covered this research</a>, and you can 
+            <a href="https://rdouglasfields.wordpress.com/wp-content/uploads/2010/12/speech16-syllables-a-sec.wav" target="_blank" style="color: #3b82f6;">hear
             samples of what 5x speed sounds like</a>.
         </p>
 
@@ -384,7 +386,7 @@
             <p>
                 I chose web because it felt "easier," not because it was the right platform for the job.
                 Native iOS apps have built-in podcast playback, background audio, and lock screen controls.
-                The web fights you at every turn for these features.
+                The web fights you at every turn for these features. I kept ignoring Claude's please to move to iOS for a lot longer than I should have!
             </p>
         </div>
 
@@ -393,13 +395,13 @@
         <h3>The Intimidation Factor</h3>
 
         <p>
-            After days of wrestling with the web app, Claude suggested: "Why don't we build this as an iOS app?
+            After days of wrestling with the web app and multiple gentle suggestions to switch to iOS, Claude suggested: "Why don't we build this as an iOS app?
             I can guide you through it."
         </p>
 
         <p>
             My immediate thought: <em>"I've never touched Xcode. I don't know Swift. The command line interface
-            intimidates me. This is crazy."</em>
+            was already outside my comfort zone. This is crazy. I didn't want another big project."</em>
         </p>
 
         <p>
@@ -437,7 +439,7 @@
 
         <div class="highlight">
             <p>
-                The pivotal moment: Realizing that the "hard stuff" (audio playback, background processing,
+                The pivotal moment: Realizing that the "hard stuff" (audio playback, increasing the speed but preserving the pitch, background processing,
                 lock screen controls) was actually easier on iOS because Apple had already built the infrastructure.
                 I just needed to wire it up.
             </p>
@@ -449,7 +451,7 @@
 
         <p>
             Once we had basic audio playback working, we moved fast. Claude would write code, I'd test it in the
-            simulator, we'd iterate. The workflow felt like having an expert pair programmer who never got tired.
+            simulator, we'd iterate. The workflow felt like having an expert pair programmer who never got tired of my many requests for changes and explanations. Claude got good at testing stuff with unit tests and in the simulator, fixing things and then hand off to me.
         </p>
 
         <div class="timeline">
@@ -457,8 +459,9 @@
                 <div class="timeline-day">Speed Progression Algorithm</div>
                 <p>
                     This was the heart of the app. We implemented a system where speed increases gradually based on
-                    listening time. The key insight: use an 80% completion threshold—you have to actually listen
-                    to 80% of content before speed increases. This prevents gaming the system.
+                    listening time. The key insight: the increases has to be very gradual and delibery unnoticeable. We used a positive version of the 
+                    <a href="https://en.wikipedia.org/w/index.php?title=Boiling_frog&oldid=1329878479" target="_blank">"boiling frog"</a> story.
+
                 </p>
             </div>
 
@@ -474,7 +477,7 @@
                 <div class="timeline-day">Background Audio</div>
                 <p>
                     This is where iOS shines. With proper audio session setup and Now Playing Info Center integration,
-                    we got background playback and lock screen controls working in hours, not days.
+                    we got background playback and lock screen controls working in hours, not days. Background playback was a key feature since we wanted users NOT to be looking at the phone.
                 </p>
             </div>
 
@@ -601,7 +604,7 @@
                 <div class="timeline-day">Afternoon: Screenshots</div>
                 <p>
                     Captured 5 app screenshots from the iPhone 17 Pro Max simulator. Fixed dimension issues
-                    (App Store is picky about exact pixel sizes). Added them to App Store Connect.
+                    (App Store is picky about exact pixel sizes). Added them to App Store Connect. Claude went beyond and created believable data for our simulator screenshots which was a nice touch.
                 </p>
             </div>
 
