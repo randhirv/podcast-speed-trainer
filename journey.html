@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Idea to App Store: Building FastCast in 5 Days</title>
+    <meta name="description" content="How a non-developer built an iOS app in 5 days using Claude Code, from web app failure to TestFlight success.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="From Idea to App Store: Building FastCast in 5 Days">
+    <meta property="og:description" content="The honest story of building an iOS app without coding experience - false starts, pivots, and lessons learned.">
+    <meta property="og:image" content="https://randhirv.github.io/podcast-speed-trainer/2-Statistics-7h-33m.png">
+    <meta property="og:url" content="https://randhirv.github.io/podcast-speed-trainer/journey.html">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: #ffffff;
+            color: #1a1a2e;
+            line-height: 1.8;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .header .subtitle {
+            font-size: 24px;
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        .header .meta {
+            color: #64748b;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .intro {
+            font-size: 22px;
+            color: #475569;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin: 60px 0 20px;
+            color: #1a1a2e;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 40px 0 16px;
+            color: #3b82f6;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #334155;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+            border-left: 4px solid #3b82f6;
+            padding: 20px 30px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .highlight p {
+            margin: 0;
+            font-style: italic;
+            color: #1e293b;
+        }
+
+        .timeline {
+            margin: 40px 0;
+            padding-left: 30px;
+            border-left: 3px solid #3b82f6;
+        }
+
+        .timeline-item {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -39px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background: #3b82f6;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .timeline-day {
+            font-weight: 700;
+            color: #3b82f6;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .screenshot {
+            width: 100%;
+            max-width: 300px;
+            margin: 30px auto;
+            display: block;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .screenshots-grid img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .lesson-box {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .lesson-box h4 {
+            color: #3b82f6;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .lesson-box ul {
+            margin-left: 20px;
+        }
+
+        .lesson-box li {
+            margin-bottom: 10px;
+            color: #475569;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .code-snippet {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        blockquote {
+            border-left: 4px solid #10b981;
+            padding-left: 20px;
+            margin: 30px 0;
+            color: #059669;
+            font-style: italic;
+            font-size: 20px;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 60px 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #3b82f6;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .header .subtitle {
+                font-size: 18px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            .intro {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>From Idea to App Store in 5 Days</h1>
+        <p class="subtitle">How a non-developer built FastCast using Claude Code</p>
+        <p class="meta">The honest story of false starts, pivots, and lessons learned</p>
+    </div>
+
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to FastCast</a>
+
+        <p class="intro">
+            I'm not a software developer. I've never written serious code. But in 5 days, I went from a
+            frustrated podcast listener to having a fully functional iOS app ready for TestFlight beta.
+            This is the story of how I did it—and how you can too.
+        </p>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Days to Beta</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Prior iOS Experience</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1</div>
+                <div class="stat-label">Major Pivot</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">AI Agents Consulted</div>
+            </div>
+        </div>
+
+        <h2>Chapter 1: The Spark</h2>
+
+        <p>
+            I love podcasts. My queue was always growing faster than I could listen. I tried Snipd—a fantastic
+            app that lets you adjust speed, create clips, and even chat with episodes. But even at faster speeds,
+            I was falling behind.
+        </p>
+
+        <p>
+            Then I remembered an article I'd read years ago about blind individuals who had trained themselves to
+            comprehend audio at 5x speed. Not because of superhuman hearing, but through neuroplasticity and
+            gradual training. <a href="https://www.scientificamerican.com/article/why-can-some-blind-people-process/"
+            target="_blank" style="color: #3b82f6;">Scientific American covered this research</a>, and you can even
+            <a href="https://www.youtube.com/watch?v=kJ4SSvVbhLw" target="_blank" style="color: #3b82f6;">hear
+            samples of what 5x speed sounds like</a>.
+        </p>
+
+        <div class="highlight">
+            <p>
+                The insight: Speed isn't just a feature—it's a trainable skill. What if I could build an app
+                that trains your brain progressively, like Duolingo for listening?
+            </p>
+        </div>
+
+        <p>
+            I didn't want summaries—they lose the essence and stories. I wanted to consume the full content,
+            just faster. And I wanted the training to be automatic, gradual, and science-backed.
+        </p>
+
+        <h2>Chapter 2: Act I - The Web App (That Didn't Work)</h2>
+
+        <h3>The Plan</h3>
+
+        <p>
+            I'm technical, but not a developer. My instinct was to start simple: build a web app. Web technologies
+            felt approachable. I thought an iOS app would be too complicated—Xcode, Swift, App Store submission...
+            it all seemed intimidating.
+        </p>
+
+        <p>
+            So I started with Claude Code to build a web-based podcast player with progressive speed training.
+        </p>
+
+        <h3>The Reality Check</h3>
+
+        <p>
+            We ran headfirst into CORS (Cross-Origin Resource Sharing) errors. Podcast RSS feeds are hosted on
+            different domains, and browsers block direct access for security reasons. To play audio from those
+            feeds, we'd need:
+        </p>
+
+        <ul style="margin-left: 30px; color: #475569;">
+            <li>A proxy server to fetch the RSS feeds</li>
+            <li>Backend infrastructure to stream audio</li>
+            <li>Workarounds for every podcast host's different setup</li>
+            <li>Dealing with HTTPS vs HTTP mixed content issues</li>
+        </ul>
+
+        <p>
+            We tried. We built proxy endpoints. We debugged CORS headers. But every fix revealed three new problems.
+            What was supposed to be "simple" was becoming a backend engineering project.
+        </p>
+
+        <div class="lesson-box">
+            <h4>💡 Lesson #1: Start with the platform that solves your core problems</h4>
+            <p>
+                I chose web because it felt "easier," not because it was the right platform for the job.
+                Native iOS apps have built-in podcast playback, background audio, and lock screen controls.
+                The web fights you at every turn for these features.
+            </p>
+        </div>
+
+        <h2>Chapter 3: Act II - The iOS Pivot</h2>
+
+        <h3>The Intimidation Factor</h3>
+
+        <p>
+            After days of wrestling with the web app, Claude suggested: "Why don't we build this as an iOS app?
+            I can guide you through it."
+        </p>
+
+        <p>
+            My immediate thought: <em>"I've never touched Xcode. I don't know Swift. The command line interface
+            intimidates me. This is crazy."</em>
+        </p>
+
+        <p>
+            But Claude's confidence was reassuring: "The tools are already built for this. Let me help you set up Xcode."
+        </p>
+
+        <h3>Day 1: Setting Up</h3>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-day">Hour 1-2: Xcode Installation</div>
+                <p>
+                    Downloaded Xcode (took forever—it's huge). Claude guided me through creating my first iOS project.
+                    Bundle ID, deployment target, SwiftUI vs Storyboard... I had no idea what any of it meant.
+                    But I followed the steps.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-day">Hour 3-4: First Success</div>
+                <p>
+                    We got "Hello World" running in the iOS Simulator. Seeing that app launch—even with just text on
+                    screen—was magical. This was real. It was actually happening.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-day">Hour 5-8: Audio Playback</div>
+                <p>
+                    Claude wrote the audio service. We tested it with a direct podcast URL. When I heard audio
+                    playing through the simulator, controlled by my app, I was hooked. This was feasible.
+                </p>
+            </div>
+        </div>
+
+        <div class="highlight">
+            <p>
+                The pivotal moment: Realizing that the "hard stuff" (audio playback, background processing,
+                lock screen controls) was actually easier on iOS because Apple had already built the infrastructure.
+                I just needed to wire it up.
+            </p>
+        </div>
+
+        <h2>Chapter 4: Act III - Building the MVP</h2>
+
+        <h3>Day 2-3: Core Features</h3>
+
+        <p>
+            Once we had basic audio playback working, we moved fast. Claude would write code, I'd test it in the
+            simulator, we'd iterate. The workflow felt like having an expert pair programmer who never got tired.
+        </p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-day">Speed Progression Algorithm</div>
+                <p>
+                    This was the heart of the app. We implemented a system where speed increases gradually based on
+                    listening time. The key insight: use an 80% completion threshold—you have to actually listen
+                    to 80% of content before speed increases. This prevents gaming the system.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-day">RSS Feed Parsing</div>
+                <p>
+                    On iOS, we could fetch and parse RSS feeds directly—no proxy needed! We handled iTunes-specific
+                    tags, HTML in descriptions, missing artwork, all the edge cases of podcast RSS feeds.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-day">Background Audio</div>
+                <p>
+                    This is where iOS shines. With proper audio session setup and Now Playing Info Center integration,
+                    we got background playback and lock screen controls working in hours, not days.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-day">Statistics Tracking</div>
+                <p>
+                    Total listening time, time saved, episodes completed, speed milestones. We stored everything
+                    locally using UserDefaults. No backend, no database, no complexity.
+                </p>
+            </div>
+        </div>
+
+        <img src="2-Statistics-7h-33m.png" alt="FastCast statistics" class="screenshot">
+
+        <div class="lesson-box">
+            <h4>💡 Lesson #2: Iterate in tight loops</h4>
+            <p>
+                We didn't build everything at once. We'd add one feature, test it thoroughly, then move to the next.
+                Each working feature built confidence. Each bug fixed was a small win. Momentum compounds.
+            </p>
+        </div>
+
+        <h3>Day 3-4: Polish and Delight</h3>
+
+        <p>
+            Once the core worked, we added the elements that make it feel professional:
+        </p>
+
+        <ul style="margin-left: 30px; color: #475569;">
+            <li><strong>Milestone celebrations:</strong> Confetti animation when you unlock 1.5x, 2.0x, etc.</li>
+            <li><strong>Queue management:</strong> Add podcasts, build a listening queue, auto-advance</li>
+            <li><strong>Per-episode memory:</strong> Resume playback position and speed for each episode</li>
+            <li><strong>Training difficulty settings:</strong> Easy, Medium, Hard progression speeds</li>
+            <li><strong>Beautiful UI:</strong> Dark theme, gradient accents, smooth animations</li>
+        </ul>
+
+        <div class="screenshots-grid">
+            <img src="1-Now-Playing-2.4x-Speed.png" alt="Now Playing">
+            <img src="5-Milestone-Celebration-3.0x.png" alt="Milestone">
+            <img src="3-Podcast-Library-Queue.png" alt="Queue">
+        </div>
+
+        <blockquote>
+            "The difference between a working app and a delightful app is polish. And polish is just
+            attention to small details, iterated many times."
+        </blockquote>
+
+        <h2>Chapter 5: Act IV - The Agent Gauntlet</h2>
+
+        <h3>Evaluating Our Own Work</h3>
+
+        <p>
+            By Day 4, we had a working app. But was it good? I asked Claude to run the app and landing page through
+            specialized AI agents—each with different expertise:
+        </p>
+
+        <div class="lesson-box">
+            <h4>🧑‍🔬 User Researcher Agent</h4>
+            <p><strong>Focus:</strong> User experience, pain points, messaging clarity</p>
+            <p><strong>Top insight:</strong> "The #1 user objection—'Will I still understand what I'm listening to?'—isn't
+            addressed anywhere. This barrier blocks 50%+ of conversions."</p>
+        </div>
+
+        <div class="lesson-box">
+            <h4>💼 Executive Agent</h4>
+            <p><strong>Focus:</strong> Market positioning, business strategy, scalability</p>
+            <p><strong>Top insight:</strong> "You're positioning a feature (speed training) when you should position a
+            platform (productivity multiplier). This is Duolingo for listening."</p>
+        </div>
+
+        <div class="lesson-box">
+            <h4>⚙️ Engineer Agent</h4>
+            <p><strong>Focus:</strong> Technical feasibility, architecture, edge cases</p>
+            <p><strong>Top insight:</strong> "The core implementation is production-ready. The speed progression algorithm
+            is clever. Minor concern: UserDefaults dictionary growth needs pruning strategy at scale."</p>
+        </div>
+
+        <h3>The Prioritization Exercise</h3>
+
+        <p>
+            The agents returned pages of feedback—both praise and improvements. Claude acted as orchestrator,
+            synthesizing the feedback into ranked priorities:
+        </p>
+
+        <ol style="margin-left: 30px; color: #475569;">
+            <li><strong>Critical:</strong> Add FAQ addressing comprehension anxiety (blocks 50% of users)</li>
+            <li><strong>High Impact:</strong> Reframe messaging around productivity benefit, not speed mechanism</li>
+            <li><strong>Medium Impact:</strong> Add social proof (testimonials) and quantified value props</li>
+            <li><strong>Low Impact:</strong> Polish items (Open Graph tags, analytics, etc.)</li>
+        </ol>
+
+        <p>
+            We didn't try to fix everything at once. We tackled the critical items first, then high impact,
+            then medium. This staging approach kept us from getting overwhelmed.
+        </p>
+
+        <div class="lesson-box">
+            <h4>💡 Lesson #3: Get multiple perspectives, then prioritize ruthlessly</h4>
+            <p>
+                The agents each saw different things. The user researcher caught UX issues. The executive saw
+                strategic positioning gaps. The engineer spotted technical debt. Together, they gave us a 360° view.
+                But the key was prioritization—what moves the needle most right now?
+            </p>
+        </div>
+
+        <h2>Chapter 6: Launch Prep</h2>
+
+        <h3>Day 5: TestFlight and Landing Page</h3>
+
+        <p>
+            The final day was all about making it real:
+        </p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-day">Morning: App Store Connect</div>
+                <p>
+                    Set up the app in App Store Connect. Privacy policy, app description, keywords, age rating.
+                    Claude provided a detailed guide with copy-paste-ready text. What could have taken hours took 30 minutes.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-day">Afternoon: Screenshots</div>
+                <p>
+                    Captured 5 app screenshots from the iPhone 17 Pro Max simulator. Fixed dimension issues
+                    (App Store is picky about exact pixel sizes). Added them to App Store Connect.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-day">Evening: Landing Page</div>
+                <p>
+                    Built a landing page on GitHub Pages. After agent feedback, we completely transformed it—from
+                    "Train Your Brain to Listen Faster" to "Reclaim 50+ Hours Per Year." Added FAQ section, testimonials,
+                    visual journey, and benefit-focused messaging.
+                </p>
+            </div>
+        </div>
+
+        <h3>The Before and After</h3>
+
+        <p><strong>Before agent feedback:</strong></p>
+        <ul style="margin-left: 30px; color: #475569;">
+            <li>Tagline: "Train Your Brain to Listen Faster" (mechanism-focused)</li>
+            <li>No FAQ section</li>
+            <li>No testimonials or social proof</li>
+            <li>Features listed generically</li>
+            <li>No quantified value proposition</li>
+        </ul>
+
+        <p><strong>After transformation:</strong></p>
+        <ul style="margin-left: 30px; color: #475569;">
+            <li>Tagline: "Reclaim 50+ Hours Per Year" (benefit-focused)</li>
+            <li>Comprehensive FAQ addressing comprehension concerns</li>
+            <li>Beta tester testimonials</li>
+            <li>Features reframed around outcomes</li>
+            <li>Value props: 50+ hours saved, 2-5x speed, 100% comprehension</li>
+        </ul>
+
+        <p>
+            <strong>Estimated impact:</strong> Agents predicted 2-3x conversion rate improvement from these changes alone.
+        </p>
+
+        <h2>Chapter 7: Lessons for Builders</h2>
+
+        <div class="lesson-box">
+            <h4>🎯 Lesson #1: Start Small, But Start</h4>
+            <p>
+                I didn't set out to build a perfect app. I set out to solve my own problem. The lesson from
+                lean product development applies even more with AI: pick something you care about personally,
+                build the simplest version that works, then iterate.
+            </p>
+            <p>
+                Your first version will have bugs. Your design will be rough. That's okay. Ship it, get feedback, improve.
+            </p>
+        </div>
+
+        <div class="lesson-box">
+            <h4>🤝 Lesson #2: You Don't Need to Be an Expert—You Need a Partner</h4>
+            <p>
+                I was intimidated by iOS development. Xcode, Swift, App Store submission—it all seemed impossible.
+                But Claude Code acted as my expert partner. I brought the vision and product sense. Claude brought
+                the technical execution.
+            </p>
+            <p>
+                The command line interface felt foreign at first, but Claude made it approachable. Every error message
+                was explained. Every decision was justified. I learned by doing, with a safety net.
+            </p>
+        </div>
+
+        <div class="lesson-box">
+            <h4>🔄 Lesson #3: Embrace Pivots</h4>
+            <p>
+                We spent 2 days on the web app before pivoting to iOS. That felt like failure at the time.
+                But those 2 days taught us what the core problem actually was. The pivot wasn't starting over—it
+                was course-correcting with more information.
+            </p>
+            <p>
+                Don't be married to your first approach. Be married to solving the problem.
+            </p>
+        </div>
+
+        <div class="lesson-box">
+            <h4>🎭 Lesson #4: Use Multiple Perspectives</h4>
+            <p>
+                The agent evaluation was a game-changer. Each agent (User Researcher, Executive, Engineer) saw things
+                I missed. They disagreed with each other sometimes, which forced me to think critically about trade-offs.
+            </p>
+            <p>
+                You can do this too: ask Claude to evaluate your work from different perspectives. "How would a UX
+                designer view this?" or "What would a marketing expert say?" You'll get surprisingly insightful feedback.
+            </p>
+        </div>
+
+        <div class="lesson-box">
+            <h4>⚡ Lesson #5: Velocity Compounds</h4>
+            <p>
+                Day 1 felt slow—just getting audio to play. But by Day 3, we were adding features in hours.
+                By Day 5, we were polishing and shipping. Early momentum creates later velocity.
+            </p>
+            <p>
+                The key: celebrate small wins. Every working feature is progress. Every bug fixed is a victory.
+                Keep the flywheel spinning.
+            </p>
+        </div>
+
+        <h2>Chapter 8: What's Next</h2>
+
+        <p>
+            As I write this, FastCast is in TestFlight beta. The next chapters:
+        </p>
+
+        <ol style="margin-left: 30px; color: #475569;">
+            <li><strong>Beta testing:</strong> Get real user feedback, fix bugs, iterate on features</li>
+            <li><strong>Positioning and pricing:</strong> Figure out the right market positioning and monetization strategy</li>
+            <li><strong>App Store launch:</strong> Submit for full App Store review, go global</li>
+            <li><strong>Growth:</strong> Learn what resonates, double down on what works</li>
+        </ol>
+
+        <p>
+            But the real journey has been this: proving to myself that the intimidation was worse than the reality.
+            Building software with AI isn't about being a developer. It's about being a builder—someone with a vision
+            and the determination to iterate until it's real.
+        </p>
+
+        <div class="highlight">
+            <p>
+                You don't need to know how to code. You need to know what problem you're solving and be willing
+                to work through the messy middle. The tools are there. The help is there. The only question is:
+                what are you going to build?
+            </p>
+        </div>
+
+        <h2>Try It Yourself</h2>
+
+        <p>
+            If you're reading this and thinking "I could never do that," I felt the same way 5 days ago.
+            Here's how to start:
+        </p>
+
+        <ol style="margin-left: 30px; color: #475569;">
+            <li><strong>Pick a problem you personally experience.</strong> The best products come from scratching your own itch.</li>
+            <li><strong>Start with Claude Code.</strong> It's free to try. Open a conversation and say: "I want to build [X]. I've never coded before. Where should I start?"</li>
+            <li><strong>Expect false starts.</strong> Our web app didn't work. That's normal. Pivots aren't failures—they're learning.</li>
+            <li><strong>Ship early.</strong> Get something working, show people, get feedback. Perfect is the enemy of shipped.</li>
+            <li><strong>Use the agent evaluation trick.</strong> Ask Claude to review your work from multiple perspectives. You'll catch blindspots.</li>
+        </ol>
+
+        <div class="cta-section">
+            <h2>Want to Try FastCast?</h2>
+            <p style="color: #94a3b8; font-size: 18px;">
+                Join the beta and experience progressive speed training for yourself.
+            </p>
+            <a href="index.html" class="cta-button">Join TestFlight Beta</a>
+        </div>
+
+        <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 60px 0;">
+
+        <p style="color: #64748b; font-size: 16px;">
+            <em>
+                Written by Randhir, a non-developer who learned that building software is less about coding skills
+                and more about problem-solving persistence. You can follow the journey at
+                <a href="index.html" style="color: #3b82f6;">FastCast</a> or reach out via
+                <a href="https://github.com/randhirv/podcast-speed-trainer" style="color: #3b82f6;">GitHub</a>.
+            </em>
+        </p>
+    </div>
+</body>
+</html>
