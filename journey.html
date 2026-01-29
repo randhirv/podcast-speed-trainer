@@ -705,6 +705,79 @@ speeds, I was falling behind.
             </p>
         </div>
 
+        <div class="lesson-box">
+            <h4>💰 Lesson #6: Be Cost-Conscious—Use the Right Tool for Each Job</h4>
+            <p>
+                This project burned through over $100 in API credits before I realized I was using a sledgehammer
+                for thumbtack jobs. Anthropic offers three models with very different costs and capabilities.
+                Learning to match the model to the task saved 50-70% on costs going forward.
+            </p>
+            <p>
+                Here's what I learned about model selection:
+            </p>
+
+            <div style="overflow-x: auto; margin: 20px 0;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                    <thead>
+                        <tr style="background: #f1f5f9; text-align: left;">
+                            <th style="padding: 12px; border: 1px solid #e2e8f0;">Model</th>
+                            <th style="padding: 12px; border: 1px solid #e2e8f0;">Cost</th>
+                            <th style="padding: 12px; border: 1px solid #e2e8f0;">Best For</th>
+                            <th style="padding: 12px; border: 1px solid #e2e8f0;">Avoid For</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid #e2e8f0;"><strong>Haiku</strong></td>
+                            <td style="padding: 12px; border: 1px solid #e2e8f0;">$0.25/MTok</td>
+                            <td style="padding: 12px; border: 1px solid #e2e8f0;">File reads, simple edits, git operations, typo fixes</td>
+                            <td style="padding: 12px; border: 1px solid #e2e8f0;">Complex reasoning, architecture decisions</td>
+                        </tr>
+                        <tr style="background: #f8fafc;">
+                            <td style="padding: 12px; border: 1px solid #e2e8f0;"><strong>Sonnet 4.5</strong></td>
+                            <td style="padding: 12px; border: 1px solid #e2e8f0;">$3/MTok</td>
+                            <td style="padding: 12px; border: 1px solid #e2e8f0;">Feature development, refactoring, debugging</td>
+                            <td style="padding: 12px; border: 1px solid #e2e8f0;">Simple file operations, repetitive tasks</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid #e2e8f0;"><strong>Opus</strong></td>
+                            <td style="padding: 12px; border: 1px solid #e2e8f0;">$15/MTok</td>
+                            <td style="padding: 12px; border: 1px solid #e2e8f0;">Architecture decisions, multi-agent analysis</td>
+                            <td style="padding: 12px; border: 1px solid #e2e8f0;">Anything Haiku or Sonnet can handle</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>
+                <strong>The insight:</strong> Being explicit about cost constraints actually helped Claude make better decisions.
+                When I said "use Haiku for simple tasks," it forced both of us to think clearly about what "simple" meant.
+                Is updating a TestFlight link simple? Yes—use Haiku. Is designing a speed progression algorithm complex? Yes—use Sonnet.
+            </p>
+            <p>
+                This constraint wasn't limiting—it was clarifying. Most tasks in software development are simple edits,
+                file reads, and git operations. Using a $15/MTok model for those is like hiring a surgeon to apply a band-aid.
+                Save your expensive models for when you truly need their reasoning power.
+            </p>
+            <p>
+                <strong>Quick rule:</strong> Default to Haiku unless you need complex reasoning. Your wallet will thank you,
+                and you'll ship just as fast.
+            </p>
+        </div>
+
+        <h2>Chapter 7: Bonus Tip - Document Your Guidelines</h2>
+
+        <p>
+            One thing that saved me later: creating a <code style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px;">claude.md</code>
+            file with cost optimization guidelines. Now when I start a new session, Claude reads that file and knows my preferences:
+            which model for which task, when to ask before running expensive operations, how to batch simple tasks.
+        </p>
+
+        <p>
+            Think of it as creating a "working agreement" with your AI partner. It makes future sessions faster and cheaper
+            because the context is already set. You're not re-explaining your preferences every time.
+        </p>
+
         <h2>Chapter 8: What's Next</h2>
 
         <p>
