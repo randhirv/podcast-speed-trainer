@@ -76,7 +76,7 @@ We may update this Privacy Policy from time to time. We will notify you of any c
 ## Contact Us
 
 If you have questions about this Privacy Policy, please contact us:
-- **GitHub**: [https://github.com/randhirv/podcast-speed-trainer](https://github.com/randhirv/podcast-speed-trainer)
+- **GitHub**: [https://github.com/randhirv/fastcast-speed-trainer](https://github.com/randhirv/fastcast-speed-trainer)
 - **Support**: Create an issue on our GitHub repository
 
 ## Consent

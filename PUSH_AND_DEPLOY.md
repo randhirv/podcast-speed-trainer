@@ -36,7 +36,7 @@ git push origin main
 3. Run:
    ```bash
    cd ~/Desktop/podcast-speed-trainer
-   git remote set-url origin https://YOUR_TOKEN@github.com/randhirv/podcast-speed-trainer.git
+   git remote set-url origin https://YOUR_TOKEN@github.com/randhirv/fastcast-speed-trainer.git
    git push origin main
    ```
 
@@ -51,7 +51,7 @@ git push origin main
 
 ## 🌐 Step 2: Enable GitHub Pages
 
-1. Go to: https://github.com/randhirv/podcast-speed-trainer
+1. Go to: https://github.com/randhirv/fastcast-speed-trainer
 2. Click **Settings** tab
 3. Click **Pages** in left sidebar
 4. Under "Source":
@@ -60,7 +60,7 @@ git push origin main
    - Folder: **/ (root)**
 5. Click **Save**
 
-GitHub will show: "Your site is ready to be published at https://randhirv.github.io/podcast-speed-trainer/"
+GitHub will show: "Your site is ready to be published at https://randhirv.github.io/fastcast-speed-trainer/"
 
 Wait 1-2 minutes for deployment.
 
@@ -94,7 +94,7 @@ Once your TestFlight build is approved for external testing:
 
 ## 🎉 Your Landing Page Will Be Live At:
 
-### https://randhirv.github.io/podcast-speed-trainer/
+### https://randhirv.github.io/fastcast-speed-trainer/
 
 Share this link:
 - On Twitter/X

@@ -276,4 +276,4 @@ If costs are getting too high:
 
 Last updated: 2026-01-29
 Project: FastCast iOS App
-Repository: https://github.com/randhirv/podcast-speed-trainer
+Repository: https://github.com/randhirv/fastcast-speed-trainer
