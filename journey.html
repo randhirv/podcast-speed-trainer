@@ -281,7 +281,7 @@
         }
     </style>
 </head>
-<body>
+
     <div class="header">
         <h1>From Idea to App Store in a Week</h1>
         <p class="subtitle">How a non-developer built FastCast using Claude Code</p>
@@ -329,8 +329,7 @@ speeds, I was falling behind.
         <p>
             Then I remembered an article I'd read years ago about blind individuals who had trained themselves to
             comprehend audio at 5x speed. Not because of superhuman hearing, but through neuroplasticity and
-            gradual training. <a href="https://www.scientificamerican.com/article/why-can-some-blind-people-process/"
-            target="_blank" style="color: #3b82f6;">Scientific American covered this research</a>, and you can 
+            gradual training. <a href="https://www.scientificamerican.com/article/why-can-some-blind-people-process/" target="_blank" style="color: #3b82f6;">Scientific American covered this research</a>, and you can 
             <a href="https://rdouglasfields.wordpress.com/wp-content/uploads/2010/12/speech16-syllables-a-sec.wav" target="_blank" style="color: #3b82f6;">hear
             samples of what 5x speed sounds like</a>.
         </p>
@@ -386,7 +385,7 @@ speeds, I was falling behind.
             <p>
                 I chose web because it felt "easier," not because it was the right platform for the job.
                 Native iOS apps have built-in podcast playback, background audio, and lock screen controls.
-                The web fights you at every turn for these features. I kept ignoring Claude's please to move to iOS for a lot longer than I should have!
+                The web fights you at every turn for these features. I kept ignoring Claude's pleas to move to iOS for a lot longer than I should have!
             </p>
         </div>
 
@@ -395,7 +394,7 @@ speeds, I was falling behind.
         <h3>The Intimidation Factor</h3>
 
         <p>
-            After days of wrestling with the web app and multiple gentle suggestions to switch to iOS, Claude suggested: "Why don't we build this as an iOS app?
+            After hours of wrestling with the web app and multiple gentle suggestions to switch to iOS, Claude suggested: "Why don't we build this as an iOS app?
             I can guide you through it."
         </p>
 
@@ -459,8 +458,8 @@ speeds, I was falling behind.
                 <div class="timeline-day">Speed Progression Algorithm</div>
                 <p>
                     This was the heart of the app. We implemented a system where speed increases gradually based on
-                    listening time. The key insight: the increases has to be very gradual and delibery unnoticeable. We used a positive version of the 
-                    <a href="https://en.wikipedia.org/w/index.php?title=Boiling_frog&oldid=1329878479" target="_blank">"boiling frog"</a> story.
+                    listening time. The key insight: the increases has to be very gradual and deliberately unnoticeable. We used a positive version of the 
+                    <a href="https://en.wikipedia.org/w/index.php?title=Boiling_frog&amp;oldid=1329878479" target="_blank">"boiling frog"</a> story.
 
                 </p>
             </div>
@@ -485,8 +484,7 @@ speeds, I was falling behind.
                 <div class="timeline-day">Statistics Tracking</div>
                 <p>
                     Total listening time, time saved, episodes completed, speed milestones. We stored everything
-                    locally using UserDefaults. No backend, no database, no complexity.
-                </p>
+                    locally using UserDefaults. No backend, no database, no complexity. Complete privacy.</p>
             </div>
         </div>
 
@@ -511,7 +509,7 @@ speeds, I was falling behind.
             <li><strong>Queue management:</strong> Add podcasts, build a listening queue, auto-advance</li>
             <li><strong>Per-episode memory:</strong> Resume playback position and speed for each episode</li>
             <li><strong>Training difficulty settings:</strong> Easy, Medium, Hard progression speeds</li>
-            <li><strong>Beautiful UI:</strong> Dark theme, gradient accents, smooth animations</li>
+            <li><strong>Beautiful UI:</strong> Dark theme, gradient accents, smooth animations. I used the brand style guide from Petra Coaching as the input for Claude here.</li>
         </ul>
 
         <div class="screenshots-grid">
@@ -611,7 +609,7 @@ speeds, I was falling behind.
             <div class="timeline-item">
                 <div class="timeline-day">Evening: Landing Page</div>
                 <p>
-                    Built a landing page on GitHub Pages. After agent feedback, we completely transformed it—from
+                    Built a landing page on GitHub Pages. After our UX agent feedback, we completely transformed it—from
                     "Train Your Brain to Listen Faster" to "Reclaim 50+ Hours Per Year." Added FAQ section, testimonials,
                     visual journey, and benefit-focused messaging.
                 </p>
@@ -629,7 +627,7 @@ speeds, I was falling behind.
             <li>No quantified value proposition</li>
         </ul>
 
-        <p><strong>After transformation:</strong></p>
+        <p><strong><br></strong></p><p><strong>After transformation:</strong></p>
         <ul style="margin-left: 30px; color: #475569;">
             <li>Tagline: "Reclaim 50+ Hours Per Year" (benefit-focused)</li>
             <li>Comprehensive FAQ addressing comprehension concerns</li>
@@ -638,7 +636,7 @@ speeds, I was falling behind.
             <li>Value props: 50+ hours saved, 2-5x speed, 100% comprehension</li>
         </ul>
 
-        <p>
+        <p><strong><br></strong></p><p>
             <strong>Estimated impact:</strong> Agents predicted 2-3x conversion rate improvement from these changes alone.
         </p>
 
@@ -709,8 +707,8 @@ speeds, I was falling behind.
             <h4>💰 Lesson #6: Be Cost-Conscious—Use the Right Tool for Each Job</h4>
             <p>
                 This project burned through over $100 in API credits before I realized I was using a sledgehammer
-                for thumbtack jobs. Anthropic offers three models with very different costs and capabilities.
-                Learning to match the model to the task saved 50-70% on costs going forward.
+                for some thumbtack jobs. Anthropic offers three models with very different costs and capabilities.
+                Learning to match the model to the task is projected to save 50-70% on costs going forward.
             </p>
             <p>
                 Here's what I learned about model selection:
@@ -769,9 +767,8 @@ speeds, I was falling behind.
 
         <p>
             One thing that saved me later: creating a <code style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px;">claude.md</code>
-            file with cost optimization guidelines. Now when I start a new session, Claude reads that file and knows my preferences:
-            which model for which task, when to ask before running expensive operations, how to batch simple tasks.
-        </p>
+            file with cost optimization and operating guidelines. Now when I start a new session, Claude reads that file and knows my preferences:
+            which model for which task, when to ask before running expensive operations, how to batch simple tasks, how to show me a plan before doing any work, etc.</p>
 
         <p>
             Think of it as creating a "working agreement" with your AI partner. It makes future sessions faster and cheaper
@@ -791,10 +788,10 @@ speeds, I was falling behind.
             <li><strong>Growth:</strong> Learn what resonates, double down on what works</li>
         </ol>
 
-        <p>
+        <p><br></p><p>
             But the real journey has been this: proving to myself that the intimidation was worse than the reality.
             Building software with AI isn't about being a developer. It's about being a builder—someone with a vision
-            and the determination to iterate until it's real.
+            and the determination to iterate with a good and patient partner until it's real.
         </p>
 
         <div class="highlight">
@@ -802,7 +799,7 @@ speeds, I was falling behind.
                 You don't need to know how to code. You need to know what problem you're solving and be willing
                 to work through the messy middle. The tools are there. The help is there. The only question is:
                 what are you going to build?
-            </p>
+            </p><p><br></p><p>When the cost of building solutions is dropping rapidly, the value of asking good questions is even more important.</p>
         </div>
 
         <h2>Try It Yourself</h2>
@@ -814,8 +811,8 @@ speeds, I was falling behind.
 
         <ol style="margin-left: 30px; color: #475569;">
             <li><strong>Pick a problem you personally experience.</strong> The best products come from scratching your own itch.</li>
-            <li><strong>Start with Claude Code.</strong> It's free to try. Open a conversation and say: "I want to build [X]. I've never coded before. Where should I start?"</li>
-            <li><strong>Expect false starts.</strong> Our web app didn't work. That's normal. Pivots aren't failures—they're learning.</li>
+            <li><strong>Start with Claude Code.</strong> It's free to try. Open a conversation and say: "I want to build [X]. I've never coded before. Where should I start?" I got my feet wet with this great Claude Code for PMs which uses Claude Code to teach.</li>
+            <li><strong>Expect false starts.</strong> Our web app didn't work. That's normal. Pivots aren't failures—they're learning. Stay fixed on the goal. Stay flexible on the path to get there.</li>
             <li><strong>Ship early.</strong> Get something working, show people, get feedback. Perfect is the enemy of shipped.</li>
             <li><strong>Use the agent evaluation trick.</strong> Ask Claude to review your work from multiple perspectives. You'll catch blindspots.</li>
         </ol>
@@ -839,5 +836,7 @@ speeds, I was falling behind.
             </em>
         </p>
     </div>
-</body>
+
+
+<readwise-tooltip-container></readwise-tooltip-container>
 </html>
